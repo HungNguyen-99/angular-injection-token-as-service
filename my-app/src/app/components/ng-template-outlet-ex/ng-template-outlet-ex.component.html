@@ -1,0 +1,9 @@
+<ng-template #templateOne let-data let-name="name" let-age="age">
+  {{ name }}-{{ age }}: {{ data }}
+</ng-template>
+
+<ng-container
+  *ngTemplateOutlet="
+    templateOne;
+    context: { $implicit: data, name: 'Hung', age: 25 }
+  " />

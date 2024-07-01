@@ -1,0 +1,5 @@
+<ng-template #templateOne let-data>
+  {{ data?.name }}-{{ data?.age }}: {{ data?.description }}
+</ng-template>
+
+<app-child [templateFromParent]="templateOne" [dataFromParent]="data" />
