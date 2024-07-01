@@ -1,3 +1,7 @@
-<p>ng-component-outlet works!</p>
+<ng-container
+  *ngComponentOutlet="
+    getCurrentComponent(currentIndex).component;
+    inputs: getCurrentComponent(currentIndex).inputs
+  " />
 
-<ng-container *ngComponentOutlet="comOne.component; inputs: comOne.inputs" />
+<button (click)="nextComponent()">Next</button>
