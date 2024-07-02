@@ -1,16 +1,17 @@
+import { NgIf, NgTemplateOutlet } from '@angular/common';
 import { Component, DestroyRef, Input, OnInit, inject } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { GithubUserService } from './services/github-user-service.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { RouterOutlet } from '@angular/router';
 import { tap } from 'rxjs';
 import { ModelI } from './models/common';
-import { NgIf, NgTemplateOutlet } from '@angular/common';
+import { GithubUserService } from './services/github-user-service.service';
+import { DATA } from './services/injection-token.service';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [RouterOutlet, NgIf, NgTemplateOutlet],
-  providers: [GithubUserService],
+  providers: [GithubUserService, {provide: DATA, useValue: 'HIHI'}],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
