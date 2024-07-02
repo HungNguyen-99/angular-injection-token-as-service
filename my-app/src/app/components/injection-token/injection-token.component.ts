@@ -12,4 +12,5 @@ export class InjectionTokenComponent {
   data = inject(DATA);
 
   title = inject(APP_CONFIG);
+  //1233
 }
