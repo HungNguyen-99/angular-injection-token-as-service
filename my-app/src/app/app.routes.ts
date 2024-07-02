@@ -1,7 +1,8 @@
 import { Routes } from '@angular/router';
+import { InjectionTokenComponent } from './components/injection-token/injection-token.component';
+import { NgComponentOutletComponent } from './components/ng-component-outlet/ng-component-outlet.component';
 import { NgTemplateOutletExComponent } from './components/ng-template-outlet-ex/ng-template-outlet-ex.component';
 import { ParentComponent } from './components/parent/parent.component';
-import { NgComponentOutletComponent } from './components/ng-component-outlet/ng-component-outlet.component';
 
 export const routes: Routes = [
   {
@@ -16,4 +17,8 @@ export const routes: Routes = [
     path: 'ng-component-outlet',
     component: NgComponentOutletComponent,
   },
+  {
+    path: 'injection-token',
+    component: InjectionTokenComponent
+  }
 ];
