@@ -4,8 +4,3 @@
 <P>{{ token.version }}</P>
 <P>{{ token.apiUrl }}</P>
 <P>{{ token.environment }}</P>
-
-<h1>USE CLASS</h1>
-<input type="text" [formControl]="searchInput" />
-<button (click)="search()"></button>
-<div *ngFor="let d of data | async">{{ d | json }}</div>
