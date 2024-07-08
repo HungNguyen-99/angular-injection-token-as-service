@@ -1,4 +1,4 @@
-import { ClassProvider, InjectionToken } from '@angular/core';
+import { ClassProvider, Injectable, InjectionToken } from '@angular/core';
 
 export interface Search<T> {
   search: (search: string) => T[];
@@ -12,6 +12,11 @@ export const getSearchServiceProvider = <T, C extends Search<T>>(
   useClass: clazz,
 });
 
+export interface Detail {
+  id: number;
+  name: string;
+}
+@Injectable()
 export class DetailSearchService implements Search<Detail> {
   search = (search: string): Detail[] => {
     let obj: Detail[] = [];
@@ -29,9 +34,4 @@ export class DetailSearchService implements Search<Detail> {
     }
     return obj;
   };
-}
-
-export interface Detail {
-  id: number;
-  name: string;
 }
