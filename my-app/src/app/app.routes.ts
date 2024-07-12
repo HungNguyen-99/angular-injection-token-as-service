@@ -5,6 +5,7 @@ import { NgTemplateOutletExComponent } from './components/ng-template-outlet-ex/
 import { ParentComponent } from './components/parent/parent.component';
 import { ImplementDIPUseClassComponent } from './components/implement-dip-use-class/implement-dip-use-class.component';
 import { ImplementShareableComponent } from './components/implement-dip-use-class/components/implement-shareable/implement-shareable.component';
+import { DiUseClassComponent } from './components/di-use-class/di-use-class.component';
 
 export const routes: Routes = [
   {
@@ -30,5 +31,9 @@ export const routes: Routes = [
   {
     path: 'implement-shareable',
     component: ImplementShareableComponent,
+  },
+  {
+    path: 'app-di-use-class',
+    component: DiUseClassComponent,
   },
 ];
