@@ -1,27 +1,33 @@
-import { NgFor, NgIf } from '@angular/common';
+import {
+  JsonPipe,
+  NgClass,
+  NgFor,
+  NgIf,
+  NgTemplateOutlet,
+} from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { TabPanelComponent } from './tab-panel.component';
 
 @Component({
   selector: 'app-tab-group',
   standalone: true,
-  imports: [NgFor, NgIf],
+  imports: [NgFor, NgIf, NgTemplateOutlet, JsonPipe],
   templateUrl: './tab-group.component.html',
   styleUrl: './tab-group.component.css',
 })
 export class TabGroupComponent {
-  tabPanelList: TabPanelComponent[] = [];
-
   @Input() tabActiveIndex = 0;
-  @Output() tabActiveChange = new EventEmitter<number>();
-  constructor(){}
+  // @Output() tabActiveChange = new EventEmitter<number>();
+  tabPanelList: TabPanelComponent[] = [];
+  constructor() {}
 
   selectItem(idx: number) {
     this.tabActiveIndex = idx;
-    this.tabActiveChange.emit(idx);
+    // this.tabActiveChange.emit(idx);
   }
 
   addTabPanel(tab: TabPanelComponent) {
+    debugger;
     this.tabPanelList.push(tab);
   }
 
@@ -39,5 +45,9 @@ export class TabGroupComponent {
     if (index !== -1) {
       this.selectItem(0);
     }
+  }
+
+  clickFin() {
+    console.log('TabGroupComponent');
   }
 }

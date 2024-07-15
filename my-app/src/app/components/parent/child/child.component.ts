@@ -1,6 +1,6 @@
 import { NgTemplateOutlet } from '@angular/common';
 import { Component, Input, TemplateRef } from '@angular/core';
-import { ModelParent, TemplateFromParent } from '../../models/common';
+import { ModelParent, TemplateFromParent } from '../../../models/common';
 
 @Component({
   selector: 'app-child',

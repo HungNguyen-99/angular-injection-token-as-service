@@ -6,7 +6,7 @@ import { InjectionTokenComponent } from './components/injection-token/injection-
 import { NgComponentOutletComponent } from './components/ng-component-outlet/ng-component-outlet.component';
 import { NgTemplateOutletExComponent } from './components/ng-template-outlet-ex/ng-template-outlet-ex.component';
 import { ParentComponent } from './components/parent/parent.component';
-import { TabGroupComponent } from './components/tab-group/tab-group.component';
+import { TabGroupContainerComponent } from './components/tab-group-container/tab-group-container.component';
 
 export const routes: Routes = [
   {
@@ -34,11 +34,12 @@ export const routes: Routes = [
     component: ImplementShareableComponent,
   },
   {
+    // this is for test use class injection for 2 service in 1 component
     path: 'app-di-use-class',
     component: DiUseClassComponent,
   },
   {
-    path: 'app-tab-group',
-    component: TabGroupComponent
-  }
+    path: 'app-tab-group-container',
+    component: TabGroupContainerComponent,
+  },
 ];
