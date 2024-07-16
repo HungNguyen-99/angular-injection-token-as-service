@@ -7,6 +7,7 @@ import { NgComponentOutletComponent } from './components/ng-component-outlet/ng-
 import { NgTemplateOutletExComponent } from './components/ng-template-outlet-ex/ng-template-outlet-ex.component';
 import { ParentComponent } from './components/parent/parent.component';
 import { TabGroupContainerComponent } from './components/tab-group-container/tab-group-container.component';
+import { ExampleDiManualComponent } from './components/example-DI-manual.component';
 
 export const routes: Routes = [
   {
@@ -41,5 +42,9 @@ export const routes: Routes = [
   {
     path: 'app-tab-group-container',
     component: TabGroupContainerComponent,
+  },
+  {
+    path: 'ex-di-manual',
+    component: ExampleDiManualComponent,
   },
 ];
