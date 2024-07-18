@@ -1,6 +1,6 @@
 export class UserService {
   sayHi() {
-    console.log('Hi!');
+    console.log('Hiiii!');
   }
 }
 
@@ -26,6 +26,6 @@ export class Injector {
   }
 }
 
-const injector = new Injector([UserService]);
-const component = new ComponentOne(injector.get(UserService));
-component.user.sayHi();
+// const injector = new Injector([UserService]);
+// const component = new ComponentOne(injector.get(UserService));
+// component.user.sayHi();

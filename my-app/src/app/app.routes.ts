@@ -1,5 +1,9 @@
 import { Routes } from '@angular/router';
 import { DiUseClassComponent } from './components/di-use-class/di-use-class.component';
+import { TestUseClassComponent } from './components/doc-angular-dev/components/test-use-class.component';
+import { TestUseExistingComponent } from './components/doc-angular-dev/components/test-use-existing.component';
+import { TestUseFactoryComponent } from './components/doc-angular-dev/components/test-use-factory.component';
+import { ExampleDiManualComponent } from './components/example-DI-manual.component';
 import { ImplementShareableComponent } from './components/implement-dip-use-class/components/implement-shareable/implement-shareable.component';
 import { ImplementDIPUseClassComponent } from './components/implement-dip-use-class/implement-dip-use-class.component';
 import { InjectionTokenComponent } from './components/injection-token/injection-token.component';
@@ -7,7 +11,6 @@ import { NgComponentOutletComponent } from './components/ng-component-outlet/ng-
 import { NgTemplateOutletExComponent } from './components/ng-template-outlet-ex/ng-template-outlet-ex.component';
 import { ParentComponent } from './components/parent/parent.component';
 import { TabGroupContainerComponent } from './components/tab-group-container/tab-group-container.component';
-import { ExampleDiManualComponent } from './components/example-DI-manual.component';
 
 export const routes: Routes = [
   {
@@ -47,4 +50,16 @@ export const routes: Routes = [
     path: 'ex-di-manual',
     component: ExampleDiManualComponent,
   },
+  {
+    path: 'doc-angular-dev/test-use-class',
+    component: TestUseClassComponent
+  },
+  {
+    path: 'doc-angular-dev/test-use-existing',
+    component: TestUseExistingComponent
+  },
+  {
+    path: 'doc-angular-dev/test-use-factory',
+    component: TestUseFactoryComponent
+  }
 ];
