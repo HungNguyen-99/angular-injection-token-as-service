@@ -1,6 +1,6 @@
 import { ClassProvider, InjectionToken, ValueProvider } from '@angular/core';
-export const DATA = new InjectionToken<string>('data123', {
-  factory: () => 'hello',
+export const DATA = new InjectionToken<() => string>('data123', {
+  factory: () => () => '234',
 });
 
 //USE VALUE

@@ -7,11 +7,16 @@ import { ModelI } from './models/common';
 import { GithubUserService } from './services/github-user-service.service';
 import { DATA } from './services/injection-token.service';
 
+const UseValueObjAppComponent = () => '22222';
+
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [RouterOutlet, NgIf, NgTemplateOutlet],
-  providers: [GithubUserService, {provide: DATA, useValue: 'HIHI'}],
+  providers: [
+    GithubUserService,
+    { provide: DATA, useValue: UseValueObjAppComponent },
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
