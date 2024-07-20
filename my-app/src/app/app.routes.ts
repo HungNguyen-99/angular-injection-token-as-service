@@ -61,5 +61,9 @@ export const routes: Routes = [
   {
     path: 'doc-angular-dev/test-use-factory',
     component: TestUseFactoryComponent
+  },
+  {
+    path: 'test-static-class',
+    loadComponent: () => import('./components/test-static-class.component').then(m => m.TestStaticClassComponent)
   }
 ];
