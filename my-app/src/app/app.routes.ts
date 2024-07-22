@@ -65,5 +65,9 @@ export const routes: Routes = [
   {
     path: 'test-static-class',
     loadComponent: () => import('./components/test-static-class.component').then(m => m.TestStaticClassComponent)
+  },
+  {
+    path: 'app-test-provideIn-platform',
+    loadComponent: () => import('./components/doc-angular-dev/components/test-provideIn-platform.component').then(m => m.TestProvideInPlatformComponent)
   }
 ];
