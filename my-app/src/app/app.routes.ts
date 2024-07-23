@@ -52,22 +52,35 @@ export const routes: Routes = [
   },
   {
     path: 'doc-angular-dev/test-use-class',
-    component: TestUseClassComponent
+    component: TestUseClassComponent,
   },
   {
     path: 'doc-angular-dev/test-use-existing',
-    component: TestUseExistingComponent
+    component: TestUseExistingComponent,
   },
   {
     path: 'doc-angular-dev/test-use-factory',
-    component: TestUseFactoryComponent
+    component: TestUseFactoryComponent,
   },
   {
     path: 'test-static-class',
-    loadComponent: () => import('./components/test-static-class.component').then(m => m.TestStaticClassComponent)
+    loadComponent: () =>
+      import('./components/test-static-class.component').then(
+        m => m.TestStaticClassComponent
+      ),
   },
   {
     path: 'app-test-provideIn-platform',
-    loadComponent: () => import('./components/doc-angular-dev/components/test-provideIn-platform.component').then(m => m.TestProvideInPlatformComponent)
-  }
+    loadComponent: () =>
+      import(
+        './components/doc-angular-dev/components/test-provideIn-platform.component'
+      ).then(m => m.TestProvideInPlatformComponent),
+  },
+  {
+    path: 'app-test-resolution-modifier',
+    loadComponent: () =>
+      import(
+        './components/doc-angular-dev/components/test-resolution-modifier.component'
+      ).then(m => m.TestResolutionModifierComponent),
+  },
 ];
