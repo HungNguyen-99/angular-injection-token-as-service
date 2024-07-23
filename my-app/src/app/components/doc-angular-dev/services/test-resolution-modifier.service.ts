@@ -10,3 +10,10 @@ export class TestResolutionModifierService {
     this.count = value;
   }
 }
+
+@Injectable()
+export class TestResolutionModifier2Service {
+  log(type: string) {
+    console.log('test 222222222222222');
+  }
+}
