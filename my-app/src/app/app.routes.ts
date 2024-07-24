@@ -83,4 +83,11 @@ export const routes: Routes = [
         './components/doc-angular-dev/components/test-resolution-modifier.component'
       ).then(m => m.TestResolutionModifierComponent),
   },
+  {
+    path: 'app-test-resolution-modifier-host',
+    loadComponent: () =>
+      import(
+        './components/doc-angular-dev/components/test-resolution-modifier.component'
+      ).then(m => m.TestResolutionModifierHostComponent),
+  },
 ];
