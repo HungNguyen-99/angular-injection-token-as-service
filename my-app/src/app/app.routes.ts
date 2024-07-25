@@ -90,4 +90,11 @@ export const routes: Routes = [
         './components/doc-angular-dev/components/test-resolution-modifier.component'
       ).then(m => m.TestResolutionModifierHostComponent),
   },
+  {
+    path: 'app-structure-template-di',
+    loadComponent: () =>
+      import(
+        './components/doc-angular-dev/components/structure-template-di.component'
+      ).then(m => m.StructureTemplateDiComponent),
+  }
 ];
