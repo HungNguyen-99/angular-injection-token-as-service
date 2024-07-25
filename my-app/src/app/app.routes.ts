@@ -96,5 +96,12 @@ export const routes: Routes = [
       import(
         './components/doc-angular-dev/components/structure-template-di.component'
       ).then(m => m.StructureTemplateDiComponent),
+  },
+  {
+    path: 'control-value-accessor-container',
+    loadComponent: () =>
+      import(
+        './components/control-value-accsessor/control-value-accessor-container.component'
+      ).then(m => m.ControlValueAccessorContainer)
   }
 ];
