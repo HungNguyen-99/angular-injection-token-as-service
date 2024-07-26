@@ -103,5 +103,12 @@ export const routes: Routes = [
       import(
         './components/control-value-accsessor/control-value-accessor-container.component'
       ).then(m => m.ControlValueAccessorContainer)
+  },
+  {
+    path: 'form-overview',
+    loadComponent: () =>
+      import(
+        './components/forms/form-overview.component'
+      ).then(m => m.FormOverViewComponent)
   }
 ];
