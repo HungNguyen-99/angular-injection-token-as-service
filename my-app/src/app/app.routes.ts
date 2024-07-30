@@ -110,5 +110,12 @@ export const routes: Routes = [
       import(
         './components/forms/form-overview.component'
       ).then(m => m.FormOverViewComponent)
+  },
+  {
+    path: 'app-book-container',
+    loadComponent: () =>
+      import('./components/web-worker/book-container.component').then(
+        m => m.BookContainerComponent
+      )
   }
 ];
