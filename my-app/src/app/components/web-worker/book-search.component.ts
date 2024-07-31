@@ -1,60 +1,75 @@
-import { AsyncPipe } from "@angular/common";
-import { Component, inject, OnInit } from "@angular/core";
-import { NonNullableFormBuilder, ReactiveFormsModule } from "@angular/forms";
-import { provideComponentStore } from "@ngrx/component-store";
-import { distinctUntilChanged, filter } from "rxjs";
-import { BookSearchFacade } from "./facades/book-search.facade";
-import { BookSearchForm } from "./models";
-import { isNotNil } from "./shared/utils";
+import { AsyncPipe } from '@angular/common';
+import { Component, inject, OnInit } from '@angular/core';
+import { NonNullableFormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { provideComponentStore } from '@ngrx/component-store';
+import { distinctUntilChanged, filter } from 'rxjs';
+import { BookSearchFacade } from './facades/book-search.facade';
+import { BookSearchForm } from './models';
+import { isNotNil } from './shared/utils';
 
 @Component({
-    selector: 'app-book-search',
-    template: `
-        <p>book search</p>
-        @if (vm$ | async; as vm) {
-            <ng-container [formGroup]="form">
-                <select formControlName="book">
-                    @for (item of vm.books; track $index) {
-                        <option [value]="item.url">{{item.name}}</option>
-                    }
-                </select>
+  selector: 'app-book-search',
+  template: `
+    <p>book search</p>
+    @if (vm$ | async; as vm) {
+      <ng-container [formGroup]="form">
+        <select formControlName="book">
+          @for (item of vm.books; track $index) {
+            <option [value]="item.url">{{ item.name }}</option>
+          }
+        </select>
 
-                <input type="text" formControlName="searchTerm">
-            </ng-container>
-        }
-    `,
-    standalone: true,
-    providers: [provideComponentStore(BookSearchFacade)],
-    imports: [AsyncPipe, ReactiveFormsModule]
+        <input type="text" formControlName="searchTerm" />
+      </ng-container>
+      <span>
+        <span>{{ vm.searchedParagraphCount }} / {{ vm.paragraphCount }}</span>
+        <span>({{ vm.progress }})</span>
+      </span>
+      @for (item of vm.paragraphMatches; track $index) {
+        <hr />
+        <blockquote>
+          <span>{{ item.before }}</span>
+          <strong>{{ item.match }}</strong>
+          <span>{{ item.after }}</span>
+          <footer>Score: {{ item.score }}</footer>
+        </blockquote>
+      }
+    }
+  `,
+  standalone: true,
+  providers: [provideComponentStore(BookSearchFacade)],
+  imports: [AsyncPipe, ReactiveFormsModule],
 })
 export class BookSearchComponent implements OnInit {
-    private readonly fb = inject(NonNullableFormBuilder);
-    private readonly facade = inject(BookSearchFacade);
+  private readonly fb = inject(NonNullableFormBuilder);
+  private readonly facade = inject(BookSearchFacade);
 
-    vm$ = this.facade.vm$;
+  vm$ = this.facade.vm$;
 
-    form!: BookSearchForm;
+  form!: BookSearchForm;
 
-    ngOnInit(): void {
-        this.initialForm();
-        this.listenFormValueChange();
-    }
+  ngOnInit(): void {
+    this.initialForm();
+    this.listenFormValueChange();
+  }
 
-    private initialForm() {
-        this.form = this.fb.group<BookSearchForm['controls']>({
-            book: this.fb.control(null),
-            searchTerm: this.fb.control(''),
-        });
-    }
+  private initialForm() {
+    this.form = this.fb.group<BookSearchForm['controls']>({
+      book: this.fb.control(null),
+      searchTerm: this.fb.control(''),
+    });
+  }
 
-    private listenFormValueChange() {
-        const { book, searchTerm } = this.form.controls;
+  private listenFormValueChange() {
+    const { book, searchTerm } = this.form.controls;
 
-        const book$ = book.valueChanges.pipe(
-            distinctUntilChanged(),
-            filter(isNotNil)
-        )
+    const book$ = book.valueChanges.pipe(
+      distinctUntilChanged(),
+      filter(isNotNil)
+    );
+    const searchTerm$ = searchTerm.valueChanges.pipe(distinctUntilChanged());
 
-        this.facade.getBook(book$);
-    }
+    this.facade.getBook(book$);
+    this.facade.search(searchTerm$);
+  }
 }
