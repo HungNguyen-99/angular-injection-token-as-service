@@ -7,7 +7,7 @@ import { BookSearchComponent } from "./book-search.component";
     template: `
         <div [style.display]="FLEX">
             <app-book-search [style.width.%]="WIDTH"></app-book-search>
-            <app-book-search-worker></app-book-search-worker>
+            <app-book-search-worker [style.width.%]="WIDTH"></app-book-search-worker>
         </div>
     `,
     standalone: true,

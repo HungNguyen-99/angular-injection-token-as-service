@@ -1,7 +1,6 @@
 import { AsyncPipe } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { NonNullableFormBuilder, ReactiveFormsModule } from '@angular/forms';
-import { provideComponentStore } from '@ngrx/component-store';
 import { distinctUntilChanged, filter } from 'rxjs';
 import { BookSearchFacade } from './facades/book-search.facade';
 import { BookSearchForm } from './models';
@@ -37,7 +36,7 @@ import { isNotNil } from './shared/utils';
     }
   `,
   standalone: true,
-  providers: [provideComponentStore(BookSearchFacade)],
+  providers: [(BookSearchFacade)],
   imports: [AsyncPipe, ReactiveFormsModule],
 })
 export class BookSearchComponent implements OnInit {
