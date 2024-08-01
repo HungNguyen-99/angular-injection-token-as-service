@@ -69,29 +69,26 @@ export class BookSearchFacade extends ComponentStore<BookSearchState> {
     { debounce: true }
   );
 
-  getBook2 = this.effect<string>(url$ => {
+  getBook = this.effect<string>(url$ => {
     return url$.pipe(
       switchMap((url: string) => this.bookApi.getBooks(url)),
       map(text => this.splitTextIntoParagraphs(text)),
-      tap(paragraphs => this.patchState({ paragraphs })),
-      tap((paragraphs: any) => {
-        console.log(paragraphs);
-      })
+      tap(paragraphs => this.patchState({ paragraphs }))
     );
   });
 
-  getBook(url$: Observable<string>) {
-    url$
-      .pipe(
-        switchMap((url: string) => this.bookApi.getBooks(url)),
-        map(text => this.splitTextIntoParagraphs(text)),
-        tap(paragraphs => this.patchState({ paragraphs })),
-        tap((paragraphs: any) => {
-          console.log(paragraphs);
-        })
-      )
-      .subscribe();
-  }
+  // getBook(url$: Observable<string>) {
+  //   url$
+  //     .pipe(
+  //       switchMap((url: string) => this.bookApi.getBooks(url)),
+  //       map(text => this.splitTextIntoParagraphs(text)),
+  //       tap(paragraphs => this.patchState({ paragraphs })),
+  //       tap((paragraphs: any) => {
+  //         console.log(paragraphs);
+  //       })
+  //     )
+  //     .subscribe();
+  // }
 
   search = this.effect<string>(term$ => {
     return combineLatest({
