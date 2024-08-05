@@ -1,13 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { ComponentStore } from '@ngrx/component-store';
-import {
-  auditTime,
-  combineLatest,
-  map,
-  Observable,
-  switchMap,
-  tap,
-} from 'rxjs';
+import { auditTime, combineLatest, map, switchMap, tap } from 'rxjs';
 import { BookApi } from '../data-access';
 import { BookChoice, BookInfo, books } from '../models';
 import { getAccumulatedSearchResults, SearchResult } from '../utils';
@@ -69,29 +62,16 @@ export class BookSearchFacade extends ComponentStore<BookSearchState> {
     { debounce: true }
   );
 
-  getBook = this.effect<string>(url$ => {
-    return url$.pipe(
+  getBook = this.effect<string>(url$ =>
+    url$.pipe(
       switchMap((url: string) => this.bookApi.getBooks(url)),
       map(text => this.splitTextIntoParagraphs(text)),
       tap(paragraphs => this.patchState({ paragraphs }))
-    );
-  });
+    )
+  );
 
-  // getBook(url$: Observable<string>) {
-  //   url$
-  //     .pipe(
-  //       switchMap((url: string) => this.bookApi.getBooks(url)),
-  //       map(text => this.splitTextIntoParagraphs(text)),
-  //       tap(paragraphs => this.patchState({ paragraphs })),
-  //       tap((paragraphs: any) => {
-  //         console.log(paragraphs);
-  //       })
-  //     )
-  //     .subscribe();
-  // }
-
-  search = this.effect<string>(term$ => {
-    return combineLatest({
+  search = this.effect<string>(term$ =>
+    combineLatest({
       term: term$,
       paragraphs: this.paragraphs$,
     }).pipe(
@@ -101,8 +81,8 @@ export class BookSearchFacade extends ComponentStore<BookSearchState> {
       auditTime(1000 / 60),
       tap(value => console.log(value)),
       tap(searchResult => this.patchState({ result: searchResult }))
-    );
-  });
+    )
+  );
 
   private splitTextIntoParagraphs(text: string): string[] {
     return text.split(/\n\s*\n/);

@@ -1,21 +1,26 @@
 /// <reference lib="webworker" />
 
-import { auditTime, fromEvent, switchMap, tap } from 'rxjs';
-import { WorkerInput } from './models';
+import { auditTime, tap } from 'rxjs';
 import { getAccumulatedSearchResults } from './utils';
 
-// addEventListener('message', ({ data }) => {
-//   const response = `worker response to ${data}`;
-//   postMessage(response);
-// });
-
-fromEvent<MessageEvent>(self, 'message')
-  .pipe(
-    switchMap((event: { data: WorkerInput }) => {
-      const { paragraphs, term } = event.data;
-      return getAccumulatedSearchResults(term, paragraphs);
-    }),
+addEventListener('message', ({ data }) => {
+  debugger
+  const { paragraphs, term } = data;
+  const response = getAccumulatedSearchResults(term, paragraphs).pipe(
     auditTime(1000 / 60),
     tap(value => postMessage(value))
-  )
-  .subscribe();
+  );
+  response.subscribe();
+});
+
+// fromEvent<MessageEvent>(self, 'message')
+//   .pipe(
+//     switchMap((event: { data: WorkerInput }) => {
+//       debugger
+//       const { paragraphs, term } = event.data;
+//       return getAccumulatedSearchResults(term, paragraphs);
+//     }),
+//     auditTime(1000 / 60),
+//     tap(value => postMessage(value))
+//   )
+//   .subscribe();

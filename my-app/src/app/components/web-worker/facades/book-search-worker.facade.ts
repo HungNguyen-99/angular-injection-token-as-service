@@ -35,7 +35,7 @@ export class BookSearchWorkerFacade extends BookSearchFacade {
         observer.error(error);
       }
     }).pipe(
-      tap((value) => console.log(value)),
+      tap((value) => console.log('================================',value)),
       tap((searchResult) => this.patchState({ result: searchResult }))
     );
   });

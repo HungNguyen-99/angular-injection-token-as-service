@@ -37,7 +37,6 @@ export function getAccumulatedSearchResults(
   searchTerm: string,
   paragraphs: string[]
 ): Observable<SearchResult> {
-  // console.log(searchTerm);
   return getSearchResults(searchTerm, paragraphs).pipe(
     accumulateResults(paragraphs.length)
   );
